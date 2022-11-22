@@ -52,9 +52,8 @@ class CartTest {
 
         assertThat(cart.receipt())
                 .isEqualTo("""
-                           Total Price: $0
-                           """
-                );
+                        Total Price: $0
+                        """);
     }
 
     @Test
@@ -65,6 +64,8 @@ class CartTest {
 
         assertThat(cart.receipt())
                 .isEqualTo("""
+                            Toothbrush $1
+                            
                             Total Price: $1
                             """);
     }
