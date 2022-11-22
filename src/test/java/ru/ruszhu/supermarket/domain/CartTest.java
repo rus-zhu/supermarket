@@ -69,4 +69,18 @@ class CartTest {
                             Total Price: $1
                             """);
     }
+
+    @Test
+    public void cartWithDifferentItemThenReceiptShowsItemNameAndPrice() throws Exception {
+        Cart cart = new Cart();
+
+        cart.add("Toothpaste", 2);
+
+        assertThat(cart.receipt())
+                .isEqualTo("""
+                            Toothpaste $2
+                            
+                            Total Price: $2
+                            """);
+    }
 }

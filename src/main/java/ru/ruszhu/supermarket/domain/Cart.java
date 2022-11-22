@@ -2,6 +2,7 @@ package ru.ruszhu.supermarket.domain;
 
 public class Cart {
 
+    private String productName;
     private int totalPrice = 0;
 
     public int totalPrice() {
@@ -9,6 +10,7 @@ public class Cart {
     }
 
     public void add(String productName, int productPrice) {
+        this.productName = productName;
         this.totalPrice += productPrice;
     }
 
@@ -31,9 +33,11 @@ public class Cart {
 
     private String receiptForNonEmptyCart() {
         return """
-                Toothbrush $%s
+                %s $%s
                                     
                 Total Price: $%s
-                """.formatted(totalPrice(), totalPrice());
+                """.formatted(productName,
+                              totalPrice(),
+                              totalPrice());
     }
 }
