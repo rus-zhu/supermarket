@@ -25,7 +25,7 @@ public class Cart {
         return totalPrice() == 0;
     }
 
-    private static String receiptForEmptyCart() {
+    private String receiptForEmptyCart() {
         return """
                 Total Price: $0
                 """;
