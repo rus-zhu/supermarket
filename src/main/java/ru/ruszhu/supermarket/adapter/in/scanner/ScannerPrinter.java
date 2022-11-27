@@ -1,6 +1,7 @@
 package ru.ruszhu.supermarket.adapter.in.scanner;
 
 import ru.ruszhu.supermarket.domain.Cart;
+import ru.ruszhu.supermarket.domain.Product;
 
 public class ScannerPrinter {
     private Cart cart;
@@ -23,12 +24,13 @@ public class ScannerPrinter {
     }
 
     public String receiptForNonEmptyCart() {
+        Product product = cart.contents().findFirst().get();
         return """
                 %s $%s
                                     
                 Total Price: $%s
-                """.formatted(cart.product().productName(),
-                              cart.product().productPrice(),
+                """.formatted(product.productName(),
+                              product.productPrice(),
                               cart.totalPrice());
     }
 }
