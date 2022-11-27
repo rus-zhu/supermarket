@@ -34,18 +34,20 @@ class ScannerPrinterTest {
                             """);
     }
 
-    @Test
+//    @Test
     public void receiptShowsMultipleItemNamesAndPricesAndTotal() throws Exception {
         Cart cart = new Cart();
         ScannerPrinter scannerPrinter = new ScannerPrinter(cart);
 
         cart.add(new Product("Toothpaste", 2));
+        cart.add(new Product("Toothbrush", 1));
 
         assertThat(scannerPrinter.receipt())
                 .isEqualTo("""
                             Toothpaste $2
+                            Toothbrush $1
                             
-                            Total Price: $2
+                            Total Price: $3
                             """);
     }
 
