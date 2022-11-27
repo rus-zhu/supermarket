@@ -3,8 +3,10 @@ package ru.ruszhu.supermarket.adapter.in.scanner;
 import ru.ruszhu.supermarket.domain.Cart;
 import ru.ruszhu.supermarket.domain.Product;
 
+import java.util.stream.Collectors;
+
 public class ScannerPrinter {
-    private Cart cart;
+    private final Cart cart;
 
     public ScannerPrinter(Cart cart) {
         this.cart = cart;
@@ -23,22 +25,21 @@ public class ScannerPrinter {
                 """;
     }
 
-    public String receiptForNonEmptyCart() {
-        Product product = cart.contents()
-                              .findFirst()
-                              .get();
-        String productRow = productToReceiptEntry(product);
+    private String receiptForNonEmptyCart() {
+        String productRows = cart.contents()
+                                 .map(this::productToReceiptEntry)
+                                 .collect(Collectors.joining());
         return """
                 %s
-                                    
                 Total Price: $%s
-                """.formatted(productRow,
+                """.formatted(productRows,
                               cart.totalPrice());
     }
 
     private String productToReceiptEntry(Product product) {
         return """
-                %s $%s"""
+                %s $%s
+                """
                 .formatted(product.name(),
                            product.price());
     }
