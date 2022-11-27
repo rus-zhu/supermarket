@@ -1,4 +1,4 @@
 package ru.ruszhu.supermarket.domain;
 
-public record Product(String productName, int productPrice) {
+public record Product(String name, int price) {
 }
