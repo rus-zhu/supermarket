@@ -2,20 +2,20 @@ package ru.ruszhu.supermarket.domain;
 
 public class Cart {
 
-    private String productName;
     private int totalPrice = 0;
+    private Product product;
 
     public int totalPrice() {
         return totalPrice;
     }
 
     public void add(Product product) {
-        this.productName = product.productName();
         this.totalPrice += product.productPrice();
+        this.product = product;
     }
 
-    public String productName() {
-        return productName;
+    public Product product() {
+        return product;
     }
 
 }
