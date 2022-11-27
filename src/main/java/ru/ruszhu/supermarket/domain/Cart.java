@@ -9,12 +9,13 @@ public class Cart {
         return totalPrice;
     }
 
-    public void add(String productName, int productPrice) {
-        this.productName = productName;
-        this.totalPrice += productPrice;
+    public void add(Product product) {
+        this.productName = product.productName();
+        this.totalPrice += product.productPrice();
     }
 
     public String productName() {
         return productName;
     }
+
 }
